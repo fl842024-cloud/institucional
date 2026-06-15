@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R. Teixeira Design & Dev — Software, Apps e Jogos</title>
+  <meta name="description" content="R. Teixeira Design & Dev cria aplicativos, jogos e ferramentas para Android, iOS e computador, com foco em transparência e confiança.">
+
+  <!-- ===================================================================
+       FONTES
+       Sora  -> títulos e destaques (display)
+       Inter -> textos corridos (leitura)
+       JetBrains Mono -> "etiquetas" (status, tags), reforça o universo dev
+  =================================================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* =================================================================
+       1. TOKENS DE DESIGN
+       Paleta extraída do logotipo: azul-marinho profundo, azul royal
+       e o gradiente verde-água/ciano -> azul que forma o "T".
+    ================================================================= */
+    :root {
+      /* Cores base */
+      --navy-900: #0F1B33;   /* fundo escuro principal (hero, rodapé) */
+      --navy-800: #16243F;   /* texto escuro / superfícies escuras alternativas */
+      --navy-700: #233A63;   /* bordas e detalhes sobre fundo escuro */
+
+      --blue-600: #2C56D6;   /* azul royal do logo */
+      --blue-500: #3E6BF0;
+
+      --teal-400: #1FB8AC;   /* verde-água / ciano do logo */
+      --teal-300: #6FE3D6;
+
+      --bg: #F5F8FB;         /* fundo claro das seções */
+      --surface: #FFFFFF;    /* cartões e superfícies */
+      --line: #E2E8F1;       /* linhas divisórias sutis */
+
+      --text: #16243F;       /* texto principal sobre fundo claro */
+      --text-soft: #5C6B85;  /* texto secundário */
+      --text-on-dark: #EAF0FB;
+      --text-on-dark-soft: #A9B7D6;
+
+      /* Gradiente-assinatura: o mesmo gradiente do traço do "T" e do
+         filete sob a marca "DESIGN & DEV" no logotipo. Reaparece como
+         divisor entre seções ao longo do site. */
+      --gradient-signature: linear-gradient(90deg, var(--teal-400) 0%, var(--blue-600) 100%);
+
+      /* Tipografia */
+      --font-display: 'Sora', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+      /* Layout */
+      --container: 1140px;
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    /* =================================================================
+       2. RESET BÁSICO E ESTILOS GLOBAIS
+    ================================================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 88px 0;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    h2 {
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    p {
+      color: var(--text-soft);
+    }
+
+    /* Linha de assinatura: ecoa o filete em gradiente que aparece sob
+       "DESIGN & DEV" no logotipo. Usada como divisor entre seções. */
+    .signature-rule {
+      height: 4px;
+      width: 64px;
+      border-radius: 4px;
+      background: var(--gradient-signature);
+      margin-bottom: 20px;
+    }
+
+    .signature-rule.center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* "Eyebrow" no estilo comentário de código — reforça o universo dev */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+      color: var(--teal-400);
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::before {
+      content: "//";
+      color: var(--text-soft);
+      opacity: 0.6;
+    }
+
+    .section-head {
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+
+    .section-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .section-head p {
+      font-size: 1.05rem;
+    }
+
+    /* Botões */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background: var(--gradient-signature);
+      color: #FFFFFF;
+      box-shadow: 0 8px 24px -8px rgba(44, 86, 214, 0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -8px rgba(31, 184, 172, 0.5);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--text-on-dark-soft);
+      color: var(--text-on-dark);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--teal-300);
+      color: var(--teal-300);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--blue-600);
+      color: var(--blue-600);
+    }
+
+    .btn-store {
+      width: 100%;
+      justify-content: center;
+      background: var(--navy-900);
+      color: #FFFFFF;
+    }
+
+    .btn-store:hover {
+      background: var(--blue-600);
+      transform: translateY(-2px);
+    }
+
+    .btn-store svg {
+      flex-shrink: 0;
+    }
+
+    /* Foco visível para navegação por teclado (acessibilidade) */
+    a:focus-visible,
+    button:focus-visible,
+    .btn:focus-visible,
+    .nav-toggle:focus-visible {
+      outline: 2px solid var(--teal-400);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* =================================================================
+       3. CABEÇALHO
+       Fundo claro propositalmente: o logotipo enviado tem fundo
+       quase branco, então o cabeçalho claro evita qualquer
+       "caixa" visível ao redor da imagem.
+    ================================================================= */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* Filete em gradiente no topo do cabeçalho — outra aparição da
+       linha-assinatura do logotipo */
+    header::before {
+      content: "";
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: var(--gradient-signature);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--navy-900);
+    }
+
+    /* Espaço reservado para o logotipo.
+       Substitua logo.png pelo arquivo do logotipo na raiz do site. */
+    .brand img {
+      height: 44px;
+      width: auto;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-text small {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--text-soft);
+      letter-spacing: 0.04em;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--navy-800);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue-600);
+      background: rgba(44, 86, 214, 0.06);
+    }
+
+    /* Botão hambúrguer (somente mobile) — implementado com checkbox,
+       sem necessidade de JavaScript */
+    .nav-toggle {
+      display: none;
+    }
+
+    .nav-toggle-label {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .nav-toggle-label span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--navy-900);
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    /* =================================================================
+       4. HERO (HOME)
+       Fundo escuro — primeiro grande contraste do site — com o
+       elemento gráfico assinatura: uma fita fluida (verde-água) que
+       se transforma em um bloco geométrico (azul royal), citando
+       a transição de formas do "T" do logotipo.
+    ================================================================= */
+    .hero {
+      background: var(--navy-900);
+      color: var(--text-on-dark);
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0 80px;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 48px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .accent {
+      background: var(--gradient-signature);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--text-on-dark-soft);
+      font-size: 1.08rem;
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-graphic {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .hero-graphic svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Animação ambiente sutil das fitas: leve deslocamento vertical
+       em loop lento. Respeita prefers-reduced-motion. */
+    .ribbon-flow {
+      animation: ribbon-drift 9s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .ribbon-flow.delay {
+      animation-delay: -4.5s;
+    }
+
+    @keyframes ribbon-drift {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ribbon-flow {
+        animation: none;
+      }
+    }
+
+    /* =================================================================
+       5. QUEM SOMOS
+    ================================================================= */
+    .about {
+      background: var(--bg);
+    }
+
+    .about .container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .about p + p {
+      margin-top: 14px;
+    }
+
+    /* Lista de áreas de atuação — cada item é uma "etiqueta" no estilo
+       monoespaçado, reforçando a identidade técnica/dev */
+    .capabilities {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .capability {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+
+    .capability .tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--teal-400);
+      background: rgba(31, 184, 172, 0.08);
+      border: 1px solid rgba(31, 184, 172, 0.25);
+      padding: 4px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .capability strong {
+      font-family: var(--font-display);
+      display: block;
+      margin-bottom: 2px;
+      font-size: 0.98rem;
+    }
+
+    .capability span.desc {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+    }
+
+    /* =================================================================
+       6. VITRINE DE SOFTWARES E JOGOS
+    ================================================================= */
+    .showcase {
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .app-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .app-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px -16px rgba(22, 36, 63, 0.18);
+      border-color: rgba(31, 184, 172, 0.35);
+    }
+
+    .app-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-sm);
+      background: var(--gradient-signature);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .app-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* Status do app — pequena etiqueta no estilo "build status",
+       coerente com a proposta de transparência da empresa */
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--teal-400);
+    }
+
+    .status::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal-400);
+      box-shadow: 0 0 0 3px rgba(31, 184, 172, 0.15);
+    }
+
+    .app-card h3 {
+      margin-top: 2px;
+    }
+
+    .app-card p {
+      font-size: 0.92rem;
+      flex-grow: 1;
+    }
+
+    .app-meta {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--text-soft);
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-top: 1px dashed var(--line);
+      padding-top: 12px;
+    }
+
+    .showcase-note {
+      margin-top: 32px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      text-align: center;
+    }
+
+    /* =================================================================
+       7. POLÍTICA DE PRIVACIDADE
+    ================================================================= */
+    .privacy {
+      background: var(--bg);
+    }
+
+    .privacy-doc {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 40px clamp(20px, 5vw, 56px);
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .privacy-doc .updated {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-bottom: 28px;
+      display: inline-block;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+    }
+
+    .privacy-doc h3 {
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: var(--navy-900);
+    }
+
+    .privacy-doc p,
+    .privacy-doc li {
+      font-size: 0.97rem;
+    }
+
+    .privacy-doc ul {
+      margin: 10px 0 10px 1.2rem;
+      color: var(--text-soft);
+    }
+
+    .privacy-doc li {
+      margin-bottom: 6px;
+    }
+
+    .privacy-doc a {
+      color: var(--blue-600);
+      text-decoration: underline;
+      text-decoration-color: rgba(44, 86, 214, 0.3);
+    }
+
+    /* =================================================================
+       8. CONTATO E SUPORTE
+    ================================================================= */
+    .contact {
+      background: var(--navy-900);
+      color: var(--text-on-dark);
+    }
+
+    .contact .section-head p {
+      color: var(--text-on-dark-soft);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .contact-card {
+      background: var(--navy-800);
+      border: 1px solid var(--navy-700);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-card .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(31, 184, 172, 0.12);
+      border: 1px solid rgba(31, 184, 172, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--teal-300);
+      margin-bottom: 6px;
+    }
+
+    .contact-card h3 {
+      color: #FFFFFF;
+    }
+
+    .contact-card p,
+    .contact-card a {
+      font-size: 0.92rem;
+      color: var(--text-on-dark-soft);
+    }
+
+    .contact-card .link-line {
+      margin-top: auto;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--teal-300);
+      transition: color 0.2s ease;
+    }
+
+    .contact-card .link-line:hover {
+      color: var(--teal-200, #9FF0E6);
+      text-decoration: underline;
+    }
+
+    /* =================================================================
+       9. RODAPÉ
+    ================================================================= */
+    footer {
+      background: var(--navy-900);
+      border-top: 1px solid var(--navy-700);
+      padding: 32px 0;
+    }
+
+    .footer-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-on-dark-soft);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--teal-300);
+    }
+
+    /* =================================================================
+       10. RESPONSIVIDADE
+    ================================================================= */
+    @media (max-width: 960px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-graphic {
+        order: -1;
+        max-width: 320px;
+      }
+
+      .about .container {
+        grid-template-columns: 1fr;
+      }
+
+      .app-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      section {
+        padding: 64px 0;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+        padding: 8px 24px 16px;
+        gap: 2px;
+        transform: translateY(-8px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+
+      .nav-links a {
+        padding: 12px 8px;
+        border-radius: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      .nav-toggle-label {
+        display: flex;
+      }
+
+      .nav-toggle:checked ~ .nav-links {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .app-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-wrap {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 80px 0 56px;
+      }
+
+      .privacy-doc {
+        padding: 28px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =================================================================
+       CABEÇALHO
+  ================================================================== -->
+  <header>
+    <div class="nav-wrap">
+      <a href="#home" class="brand">
+        <!-- Substitua "logo.png" pelo arquivo do logotipo, na raiz do site -->
+        <img src="logo.png" alt="Logotipo R. Teixeira Design & Dev">
+        <span class="brand-text">
+          R. TEIXEIRA
+          <small>DESIGN & DEV</small>
+        </span>
+      </a>
+
+      <nav aria-label="Navegação principal">
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+
+        <div class="nav-links">
+          <a href="#home">Início</a>
+          <a href="#sobre">Quem Somos</a>
+          <a href="#vitrine">Apps & Jogos</a>
+          <a href="#privacidade">Privacidade</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =================================================================
+       HERO / HOME
+  ================================================================== -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-text">
+        <p class="eyebrow">estúdio de design & desenvolvimento de software</p>
+        <h1>Software com propósito, do <span class="accent">conceito</span> ao código.</h1>
+        <p>
+          A R. Teixeira Design & Dev projeta e desenvolve aplicativos, jogos e
+          ferramentas para Android, iOS e computador. Hoje, nosso foco é
+          oferecer aplicativos gratuitos na Google Play com transparência,
+          qualidade e respeito por quem usa o que criamos.
+        </p>
+        <div class="hero-actions">
+          <a href="#vitrine" class="btn btn-primary">Ver apps e jogos</a>
+          <a href="#sobre" class="btn btn-ghost">Conhecer a empresa</a>
+        </div>
+      </div>
+
+      <!-- Elemento gráfico assinatura: a fita fluida (verde-água) que se
+           transforma em bloco geométrico (azul royal), referência direta
+           à transição de formas do "T" no logotipo -->
+      <div class="hero-graphic" aria-hidden="true">
+        <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gradRibbon" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#6FE3D6"/>
+              <stop offset="100%" stop-color="#1FB8AC"/>
+            </linearGradient>
+            <linearGradient id="gradBlock" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3E6BF0"/>
+              <stop offset="100%" stop-color="#2C56D6"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Bloco geométrico (lado "estruturado") -->
+          <g class="ribbon-flow delay" opacity="0.95">
+            <rect x="250" y="120" width="170" height="170" rx="18" fill="url(#gradBlock)" opacity="0.18" transform="rotate(18 335 205)"/>
+            <rect x="230" y="180" width="150" height="150" rx="16" fill="url(#gradBlock)" opacity="0.35" transform="rotate(8 305 255)"/>
+          </g>
+
+          <!-- Fitas fluidas (lado "criativo") -->
+          <g class="ribbon-flow">
+            <path d="M40 260 C 110 180, 170 320, 260 220 C 320 150, 360 240, 430 180"
+                  fill="none" stroke="url(#gradRibbon)" stroke-width="14" stroke-linecap="round" opacity="0.9"/>
+            <path d="M60 320 C 130 240, 190 380, 280 280 C 340 210, 380 300, 440 240"
+                  fill="none" stroke="url(#gradRibbon)" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+          </g>
+
+          <!-- Marca central — "T" estilizado minimalista -->
+          <g transform="translate(150,130)">
+            <path d="M0 0 H180 V40 H120 V300 H60 V40 H0 Z" fill="url(#gradRibbon)" opacity="0.12"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       QUEM SOMOS
+  ================================================================== -->
+  <section class="about" id="sobre">
+    <div class="container">
+      <div>
+        <span class="eyebrow">quem somos</span>
+        <div class="signature-rule"></div>
+        <h2>Uma operação pequena, com padrão de entrega grande.</h2>
+        <p>
+          A R. Teixeira Design & Dev é um estúdio dedicado à criação de
+          softwares para dispositivos móveis (Android e iOS) e computadores,
+          além de jogos e ferramentas tecnológicas voltadas a diferentes
+          finalidades — de utilitários do dia a dia a experiências
+          interativas.
+        </p>
+        <p>
+          Atualmente, nosso trabalho está concentrado em aplicativos
+          gratuitos publicados na Google Play. Acreditamos que aplicativos
+          gratuitos não precisam abrir mão de qualidade, bom design ou
+          respeito pela privacidade de quem instala — pelo contrário: é
+          justamente aí que a confiança precisa ser construída com mais
+          cuidado.
+        </p>
+        <p>
+          Cada projeto é tratado como um produto completo: da identidade
+          visual à arquitetura do código, passando por testes e atualizações
+          contínuas. Transparência sobre o que cada aplicativo faz — e sobre
+          o que ele <em>não</em> faz — é parte do nosso processo, não um
+          texto à parte.
+        </p>
+      </div>
+
+      <div class="capabilities">
+        <div class="capability">
+          <span class="tag">mobile</span>
+          <div>
+            <strong>Aplicativos Android & iOS</strong>
+            <span class="desc">Apps nativos e multiplataforma, do protótipo à publicação na loja.</span>
+          </div>
+        </div>
+        <div class="capability">
+          <span class="tag">desktop</span>
+          <div>
+            <strong>Software para computador</strong>
+            <span class="desc">Ferramentas e programas para Windows, focados em produtividade.</span>
+          </div>
+        </div>
+        <div class="capability">
+          <span class="tag">games</span>
+          <div>
+            <strong>Jogos</strong>
+            <span class="desc">Jogos casuais e experimentais, pensados para sessões curtas e divertidas.</span>
+          </div>
+        </div>
+        <div class="capability">
+          <span class="tag">tools</span>
+          <div>
+            <strong>Ferramentas & utilitários</strong>
+            <span class="desc">Pequenas soluções que resolvem problemas específicos com simplicidade.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       VITRINE DE SOFTWARES E JOGOS
+       Edite, duplique ou remova os ".app-card" abaixo para refletir o
+       seu catálogo real de aplicativos.
+  ================================================================== -->
+  <section class="showcase" id="vitrine">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">vitrine</span>
+        <div class="signature-rule center"></div>
+        <h2>Apps e jogos publicados</h2>
+        <p>
+          Um catálogo crescente de aplicativos gratuitos, todos disponíveis
+          na Google Play. Toque em "Baixar" para ser direcionado à loja.
+        </p>
+      </div>
+
+      <div class="app-grid">
+
+        <!-- Card de app — modelo 1 -->
+        <article class="app-card">
+          <div class="app-card-top">
+            <div class="app-icon" aria-hidden="true">A</div>
+            <span class="status">Disponível</span>
+          </div>
+          <h3>Nome do Aplicativo 1</h3>
+          <p>
+            Breve descrição do que o aplicativo faz e qual problema ele
+            resolve para quem instala — em uma ou duas frases diretas.
+          </p>
+          <div class="app-meta">
+            <span>categoria: produtividade</span>
+            <span>v1.0.0</span>
+          </div>
+          <a href="#" class="btn btn-store" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
+              <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+            </svg>
+            Baixar na Google Play
+          </a>
+        </article>
+
+        <!-- Card de app — modelo 2 -->
+        <article class="app-card">
+          <div class="app-card-top">
+            <div class="app-icon" aria-hidden="true">B</div>
+            <span class="status">Disponível</span>
+          </div>
+          <h3>Nome do Aplicativo 2</h3>
+          <p>
+            Breve descrição do que o aplicativo faz e qual problema ele
+            resolve para quem instala — em uma ou duas frases diretas.
+          </p>
+          <div class="app-meta">
+            <span>categoria: ferramentas</span>
+            <span>v1.0.0</span>
+          </div>
+          <a href="#" class="btn btn-store" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
+              <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+            </svg>
+            Baixar na Google Play
+          </a>
+        </article>
+
+        <!-- Card de app — modelo 3 -->
+        <article class="app-card">
+          <div class="app-card-top">
+            <div class="app-icon" aria-hidden="true">C</div>
+            <span class="status">Em breve</span>
+          </div>
+          <h3>Nome do Jogo 1</h3>
+          <p>
+            Breve descrição do jogo: gênero, proposta e o que torna a
+            experiência divertida em sessões rápidas.
+          </p>
+          <div class="app-meta">
+            <span>categoria: jogos</span>
+            <span>pré-lançamento</span>
+          </div>
+          <a href="#" class="btn btn-store" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
+              <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+            </svg>
+            Ver na Google Play
+          </a>
+        </article>
+
+      </div>
+
+      <p class="showcase-note">
+        // novos cartões podem ser adicionados duplicando um ".app-card" dentro de ".app-grid"
+      </p>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       POLÍTICA DE PRIVACIDADE
+       Texto-base para uso nos aplicativos publicados na Google Play.
+       Revise e adapte conforme as permissões e SDKs usados em cada app.
+  ================================================================== -->
+  <section class="privacy" id="privacidade">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">documento</span>
+        <div class="signature-rule center"></div>
+        <h2>Política de Privacidade</h2>
+        <p>Aplicável ao site institucional e aos aplicativos da R. Teixeira Design & Dev.</p>
+      </div>
+
+      <div class="privacy-doc">
+        <span class="updated">Última atualização: junho de 2026</span>
+
+        <p>
+          A R. Teixeira Design & Dev ("nós", "nosso estúdio") respeita a
+          privacidade de quem utiliza nossos aplicativos e este site. Esta
+          Política de Privacidade explica, de forma clara, quais informações
+          podem ser coletadas, como são utilizadas e quais escolhas você tem
+          em relação a elas.
+        </p>
+
+        <h3>1. Informações que podem ser coletadas</h3>
+        <p>
+          Nossos aplicativos são desenvolvidos para funcionar com a menor
+          coleta de dados possível. Dependendo do aplicativo e dos recursos
+          que ele oferece, podemos coletar:
+        </p>
+        <ul>
+          <li>Dados técnicos do dispositivo (modelo, sistema operacional e idioma), usados para garantir compatibilidade;</li>
+          <li>Dados de uso e desempenho de forma agregada e anônima, usados para identificar falhas e melhorar a experiência;</li>
+          <li>Permissões específicas solicitadas dentro do aplicativo (como armazenamento, câmera ou notificações), sempre explicadas no momento em que são solicitadas e utilizadas apenas para a finalidade descrita.</li>
+        </ul>
+        <p>
+          Nenhum aplicativo coleta dados sensíveis ou informações pessoais
+          identificáveis sem que isso seja explicitamente informado dentro
+          do próprio app, no momento em que o recurso correspondente é
+          utilizado.
+        </p>
+
+        <h3>2. Como as informações são utilizadas</h3>
+        <p>As informações eventualmente coletadas são utilizadas exclusivamente para:</p>
+        <ul>
+          <li>Fazer os aplicativos funcionarem corretamente nos dispositivos dos usuários;</li>
+          <li>Identificar, diagnosticar e corrigir erros técnicos;</li>
+          <li>Entender, de forma agregada, como os recursos são utilizados, para orientar melhorias futuras.</li>
+        </ul>
+        <p>
+          Não vendemos, alugamos ou compartilhamos dados pessoais com
+          terceiros para fins de marketing ou publicidade.
+        </p>
+
+        <h3>3. Serviços de terceiros</h3>
+        <p>
+          Alguns aplicativos podem utilizar bibliotecas e serviços de
+          terceiros — como serviços do Google Play e ferramentas de análise
+          de desempenho — para garantir estabilidade e funcionamento. Esses
+          serviços possuem suas próprias políticas de privacidade. Recomendamos
+          a leitura da política de privacidade do Google, disponível em
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.
+        </p>
+
+        <h3>4. Segurança dos dados</h3>
+        <p>
+          Adotamos medidas técnicas e organizacionais razoáveis para proteger
+          quaisquer informações tratadas por nossos aplicativos contra acesso
+          não autorizado, perda ou uso indevido. Nenhum sistema, porém, é
+          completamente livre de riscos, e trabalhamos continuamente para
+          manter nossos padrões de segurança atualizados.
+        </p>
+
+        <h3>5. Privacidade de crianças</h3>
+        <p>
+          Nossos aplicativos não são direcionados, de forma geral, a crianças
+          menores de 13 anos. Caso um aplicativo específico seja voltado a um
+          público infantil, isso será informado de forma destacada na própria
+          página da loja e dentro do aplicativo, juntamente com informações
+          adicionais sobre como a privacidade desse público é tratada.
+        </p>
+
+        <h3>6. Seus direitos e escolhas</h3>
+        <p>
+          Você pode, a qualquer momento, revisar e ajustar as permissões
+          concedidas a qualquer aplicativo diretamente nas configurações do
+          seu dispositivo. Para solicitar informações sobre dados eventualmente
+          associados ao uso de um aplicativo, ou para solicitar sua exclusão,
+          entre em contato pelo e-mail informado na seção "Contato e Suporte".
+        </p>
+
+        <h3>7. Alterações nesta política</h3>
+        <p>
+          Esta Política de Privacidade pode ser atualizada periodicamente
+          para refletir melhorias nos aplicativos ou mudanças legais. A data
+          da última atualização é exibida no topo deste documento.
+          Recomendamos a revisão periódica desta página.
+        </p>
+
+        <h3>8. Contato</h3>
+        <p>
+          Em caso de dúvidas sobre esta Política de Privacidade ou sobre o
+          tratamento de dados em qualquer aplicativo da R. Teixeira Design &
+          Dev, entre em contato pelo e-mail
+          <a href="mailto:fl842024@gmail.com">fl842024@gmail.com</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       CONTATO E SUPORTE
+  ================================================================== -->
+  <section class="contact" id="contato">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">contato</span>
+        <div class="signature-rule center"></div>
+        <h2>Fale com a gente</h2>
+        <p>Dúvidas, sugestões ou problemas com algum aplicativo? Estamos à disposição.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6 12 13 2 6"/><path d="M2 6h20v12H2z"/></svg>
+          </div>
+          <h3>E-mail de suporte</h3>
+          <p>Para dúvidas sobre os aplicativos, sugestões ou relato de problemas.</p>
+          <a class="link-line" href="mailto:fl842024@gmail.com">fl842024@gmail.com</a>
+        </div>
+
+        <div class="contact-card">
+          <div class="icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>Política de Privacidade</h3>
+          <p>Informações sobre coleta, uso e segurança de dados nos nossos apps.</p>
+          <a class="link-line" href="#privacidade">Ler política completa →</a>
+        </div>
+
+        <div class="contact-card">
+          <div class="icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </div>
+          <h3>Repositórios & projetos</h3>
+          <p>Acompanhe atualizações e projetos abertos do estúdio no GitHub.</p>
+          <a class="link-line" href="https://github.com/fl842024-cloud" target="_blank" rel="noopener">github.com/fl842024-cloud →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       RODAPÉ
+  ================================================================== -->
+  <footer>
+    <div class="container footer-wrap">
+      <span>© 2026 R. Teixeira Design & Dev. Todos os direitos reservados.</span>
+      <div class="footer-links">
+        <a href="#home">Início</a>
+        <a href="#sobre">Quem Somos</a>
+        <a href="#vitrine">Apps & Jogos</a>
+        <a href="#privacidade">Privacidade</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
