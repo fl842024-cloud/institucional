@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>R. Teixeira Design & Dev — Software, Apps e Jogos</title>
-  <meta name="description" content="R. Teixeira Design & Dev cria aplicativos, jogos e ferramentas para Android e computador, com foco em transparência e confiança.">
+  
+  <!-- SEO Otimizado para indexar o Occultum no Google -->
+  <title>R. Teixeira Design & Dev — Occultum Chat Privado, Software, Apps e Jogos</title>
+  <meta name="description" content="Occultum, mensageiro privado com criptografia ponta a ponta, e Idle Miner AM, jogo casual de mineração. Conheça os apps, jogos e ferramentas de R. Teixeira Design & Dev.">
+  <meta name="keywords" content="Occultum, Occultum Chat Privado, Occultum Messenger, Idle Miner AM, jogo de mineração, criptografia ponta a ponta, stories remunerados, R. Teixeira, apps Android, Google Play, cripto">
 
   <!-- Endereço oficial do site (GitHub Pages) -->
   <link rel="canonical" href="https://fl842024-cloud.github.io/institucional/">
-  <meta property="og:title" content="R. Teixeira Design & Dev — Software, Apps e Jogos">
-  <meta property="og:description" content="Aplicativos, jogos e ferramentas para Android e computador, com foco em transparência e confiança.">
+  <meta property="og:title" content="R. Teixeira Design & Dev — Occultum Chat Privado, Software, Apps e Jogos">
+  <meta property="og:description" content="Baixe o Occultum, o mensageiro privado com criptografia ponta a ponta e Stories remunerados. Conheça nossos apps e jogos.">
   <meta property="og:url" content="https://fl842024-cloud.github.io/institucional/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://fl842024-cloud.github.io/institucional/logo.png">
@@ -421,6 +424,10 @@
       gap: 14px;
     }
 
+    .hero-actions .btn-primary {
+      box-shadow: 0 8px 24px -8px rgba(44, 86, 214, 0.55);
+    }
+
     .hero-graphic {
       position: relative;
       width: 100%;
@@ -625,6 +632,170 @@
       font-size: 0.85rem;
       color: var(--text-soft);
       text-align: center;
+    }
+
+
+    /* =================================================================
+       6B. PÁGINA DO JOGO: IDLE MINER AM
+    ================================================================= */
+    .game {
+      background: var(--bg);
+    }
+
+    .game-hero {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 36px;
+      align-items: center;
+      margin-bottom: 56px;
+    }
+
+    .game-hero img {
+      width: 180px;
+      height: 180px;
+      border-radius: 36px;
+      box-shadow: 0 18px 40px -18px rgba(22, 36, 63, 0.45);
+    }
+
+    .game-hero p {
+      font-size: 1.05rem;
+      max-width: 620px;
+    }
+
+    .game-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .game-badges span {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .game-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .game-panel h3 {
+      margin-bottom: 14px;
+    }
+
+    .game-panel p + p {
+      margin-top: 10px;
+    }
+
+    .game-panel p,
+    .game-panel li {
+      font-size: 0.96rem;
+    }
+
+    /* A ordem dos passos é real: iniciar, coletar, melhorar, sacar */
+    .steps {
+      list-style: none;
+      counter-reset: step;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .steps li {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: var(--text-soft);
+    }
+
+    .steps li::before {
+      content: counter(step);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--gradient-signature);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .steps strong {
+      color: var(--text);
+      font-family: var(--font-display);
+    }
+
+    .level-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .level-list li {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .game-notice {
+      margin-top: 24px;
+      border-left: 4px solid var(--teal-400);
+      background: var(--surface);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 18px 22px;
+      font-size: 0.93rem;
+      color: var(--text-soft);
+    }
+
+    .game-notice strong {
+      color: var(--text);
+    }
+
+    .game-notice a {
+      color: var(--blue-600);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .game-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .game-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+      }
+
+      .game-badges {
+        justify-content: center;
+      }
     }
 
     /* =================================================================
@@ -891,13 +1062,9 @@
 </head>
 <body>
 
-  <!-- =================================================================
-       CABEÇALHO
-  ================================================================== -->
   <header>
     <div class="nav-wrap">
       <a href="#home" class="brand">
-        <!-- Substitua "logo.png" pelo arquivo do logotipo, na raiz do site -->
         <img src="logo.png" alt="Logotipo R. Teixeira Design & Dev">
         <span class="brand-text">
           R. TEIXEIRA
@@ -917,6 +1084,7 @@
           <a href="#home">Início</a>
           <a href="#sobre">Quem Somos</a>
           <a href="#vitrine">Apps & Jogos</a>
+          <a href="#idle-miner">Idle Miner AM</a>
           <a href="#privacidade">Privacidade</a>
           <a href="#contato">Contato</a>
         </div>
@@ -924,9 +1092,6 @@
     </div>
   </header>
 
-  <!-- =================================================================
-       HERO / HOME
-  ================================================================== -->
   <section class="hero" id="home">
     <div class="container">
       <div class="hero-text">
@@ -983,9 +1148,6 @@
     </div>
   </section>
 
-  <!-- =================================================================
-       QUEM SOMOS
-  ================================================================== -->
   <section class="about" id="sobre">
     <div class="container">
       <div>
@@ -1049,20 +1211,16 @@
     </div>
   </section>
 
-  <!-- =================================================================
-       VITRINE DE SOFTWARES E JOGOS
-       Edite, duplique ou remova os ".app-card" abaixo para refletir o
-       seu catálogo real de aplicativos.
-  ================================================================== -->
   <section class="showcase" id="vitrine">
     <div class="container">
       <div class="section-head center">
         <span class="eyebrow">vitrine</span>
         <div class="signature-rule center"></div>
-        <h2>Apps e jogos publicados</h2>
+        <h2>Apps e jogos</h2>
         <p>
-          Um catálogo crescente de aplicativos gratuitos, todos disponíveis
-          na Google Play. Toque em "Baixar" para ser direcionado à loja.
+          Um catálogo crescente de aplicativos gratuitos. Os que já estão na
+          Google Play têm botão de download; os demais aparecem como em
+          desenvolvimento.
         </p>
       </div>
 
@@ -1074,9 +1232,9 @@
             <div class="app-icon" aria-hidden="true">
               <img src="icone-occultum.png" alt="">
             </div>
-            <span class="status">Em breve</span>
+            <span class="status">Disponível</span>
           </div>
-          <h3>Occultum</h3>
+          <h3>Occultum Chat Privado</h3>
           <p>
             Mensageiro com criptografia ponta a ponta, chamadas de voz e
             Stories remunerados — feito para quem valoriza privacidade de
@@ -1086,38 +1244,33 @@
             <span>categoria: mensageria & privacidade</span>
             <span>pré-lançamento</span>
           </div>
-          <!-- TROQUE o href="#" abaixo pelo link real da Google Play assim que o
-               Occultum for publicado, e mude o texto do botão pra "Baixar na Google Play"
-               e o <span class="status"> acima pra "Disponível". -->
-          <a href="#" class="btn btn-store" target="_blank" rel="noopener">
+          <a href="https://play.google.com/store/apps/details?id=com.occultum.app&pcampaignid=web_share" class="btn btn-store" target="_blank" rel="noopener">
             <svg width="18" height="18" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
               <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
             </svg>
-            Em breve na Google Play
+            Baixar Occultum na Google Play
           </a>
         </article>
 
-        <!-- Card de app — modelo 2 -->
+        <!-- Idle Miner AM: jogo casual de mineração (em desenvolvimento) -->
         <article class="app-card">
           <div class="app-card-top">
-            <div class="app-icon" aria-hidden="true">B</div>
-            <span class="status">Disponível</span>
+            <div class="app-icon" aria-hidden="true">
+              <img src="icone-idle-miner.png" alt="">
+            </div>
+            <span class="status">Em desenvolvimento</span>
           </div>
-          <h3>Nome do Aplicativo 2</h3>
+          <h3>Idle Miner AM</h3>
           <p>
-            Breve descrição do que o aplicativo faz e qual problema ele
-            resolve para quem instala — em uma ou duas frases diretas.
+            Jogo casual de mineração: inicie ciclos de 10 minutos, colete
+            moedas, melhore seu mineiro e troque o saldo por saque em Pix
+            ou Dogecoin.
           </p>
           <div class="app-meta">
-            <span>categoria: ferramentas</span>
-            <span>v1.0.0</span>
+            <span>categoria: jogos • casual</span>
+            <span>18+ · em breve na Google Play</span>
           </div>
-          <a href="#" class="btn btn-store" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
-              <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
-            </svg>
-            Baixar na Google Play
-          </a>
+          <a href="#idle-miner" class="btn btn-store">Conhecer o Idle Miner AM</a>
         </article>
 
         <!-- IN SEARCH: Deriva Estelar — em teste aberto na Google Play -->
@@ -1132,7 +1285,6 @@
           <p>
             Jogo casual de exploração espacial, ambientado entre estrelas e
             nebulosas — pilote sua nave numa jornada à deriva pelo cosmos.
-            <!-- Ajuste esta descrição livremente pra descrever melhor a jogabilidade real. -->
           </p>
           <div class="app-meta">
             <span>categoria: jogos • espacial</span>
@@ -1148,17 +1300,94 @@
 
       </div>
 
-      <p class="showcase-note">
-        // novos cartões podem ser adicionados duplicando um ".app-card" dentro de ".app-grid"
+    </div>
+  </section>
+
+  <section class="game" id="idle-miner">
+    <div class="container">
+      <div class="game-hero">
+        <img src="icone-idle-miner.png" alt="Ícone do Idle Miner AM: exploradora de chapéu com picareta e um panda-vermelho, em uma mina com esmeraldas">
+        <div>
+          <span class="eyebrow">jogo</span>
+          <div class="signature-rule"></div>
+          <h2>Idle Miner AM</h2>
+          <p>
+            Um jogo casual de mineração para Android. Você inicia um ciclo,
+            volta depois para coletar as moedas e usa o saldo para melhorar
+            o seu mineiro ou pedir um saque.
+          </p>
+          <div class="game-badges">
+            <span>Android</span>
+            <span>Gratuito para jogar</span>
+            <span>Maiores de 18 anos</span>
+            <span>Em desenvolvimento</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-grid">
+        <div class="game-panel">
+          <h3>Como funciona</h3>
+          <ol class="steps">
+            <li><div><strong>Inicie um ciclo.</strong> Assista a um anúncio em vídeo para começar um ciclo de mineração de 10 minutos.</div></li>
+            <li><div><strong>Colete as moedas.</strong> Quando o ciclo terminar, as moedas ficam disponíveis para coleta. O tempo é medido no servidor, mesmo com o app fechado.</div></li>
+            <li><div><strong>Melhore o mineiro.</strong> Cada nível rende mais moedas por ciclo.</div></li>
+            <li><div><strong>Peça o saque.</strong> Troque as moedas por reais via Pix ou por Dogecoin (DOGE).</div></li>
+          </ol>
+          <ul class="level-list" aria-label="Níveis do mineiro">
+            <li>Padrão</li><li>Bronze</li><li>Ferro</li><li>Ouro</li><li>Esmeralda</li><li>Diamante</li>
+          </ul>
+        </div>
+
+        <div class="game-panel">
+          <h3>Upgrades e pagamentos</h3>
+          <p>
+            Cada upgrade do mineiro custa 10.000 moedas. Quem preferir pode
+            comprar o upgrade pagando em Dogecoin (DOGE) pelo checkout da
+            FaucetPay. A compra é opcional: dá para jogar e evoluir sem pagar nada.
+          </p>
+          <p>
+            O valor em DOGE é calculado no momento do pedido, a partir da
+            cotação em reais obtida de mais de uma fonte. O upgrade só é
+            liberado depois que o servidor confirma o pagamento com a FaucetPay.
+          </p>
+          <p>
+            Não temos acesso à sua carteira, à sua senha ou às suas chaves da
+            FaucetPay. O pagamento acontece na página da própria FaucetPay.
+          </p>
+        </div>
+
+        <div class="game-panel">
+          <h3>Saques</h3>
+          <p>
+            O saque mínimo é de 10.000 moedas, equivalente a R$ 1,00. Você
+            escolhe receber por Pix ou em DOGE. Existem limites por pedido e
+            por dia, e os saques em DOGE podem ser pausados temporariamente
+            quando a cotação está instável.
+          </p>
+        </div>
+
+        <div class="game-panel">
+          <h3>Jogo justo e uso responsável</h3>
+          <p>
+            Para evitar abusos e excesso de uso, cada sessão dura até 4 horas,
+            seguida de 1 hora de pausa. Durante a sessão, o jogo pede uma
+            verificação simples a cada intervalo, para confirmar que há uma
+            pessoa jogando.
+          </p>
+        </div>
+      </div>
+
+      <p class="game-notice">
+        <strong>Importante:</strong> o Idle Miner AM é um jogo de
+        entretenimento. Os valores são pequenos e não representam renda nem
+        investimento. Regras, limites e valores podem mudar. O app ainda está
+        em desenvolvimento e não foi publicado na Google Play. Dúvidas:
+        <a href="mailto:fl842024@gmail.com">fl842024@gmail.com</a>.
       </p>
     </div>
   </section>
 
-  <!-- =================================================================
-       POLÍTICA DE PRIVACIDADE
-       Texto-base para uso nos aplicativos publicados na Google Play.
-       Revise e adapte conforme as permissões e SDKs usados em cada app.
-  ================================================================== -->
   <section class="privacy" id="privacidade">
     <div class="container">
       <div class="section-head center">
@@ -1169,7 +1398,7 @@
       </div>
 
       <div class="privacy-doc">
-        <span class="updated">Última atualização: junho de 2026</span>
+        <span class="updated">Última atualização: outubro de 2026</span>
 
         <p>
           A R. Teixeira Design & Dev ("nós", "nosso estúdio") respeita a
@@ -1194,7 +1423,8 @@
           Nenhum aplicativo coleta dados sensíveis ou informações pessoais
           identificáveis sem que isso seja explicitamente informado dentro
           do próprio app, no momento em que o recurso correspondente é
-          utilizado.
+          utilizado. O Idle Miner AM, que tem login e pagamentos, trata
+          mais dados que os demais; eles estão descritos na seção 4.
         </p>
 
         <h3>2. Como as informações são utilizadas</h3>
@@ -1205,21 +1435,51 @@
           <li>Entender, de forma agregada, como os recursos são utilizados, para orientar melhorias futuras.</li>
         </ul>
         <p>
-          Não vendemos, alugamos ou compartilhamos dados pessoais com
-          terceiros para fins de marketing ou publicidade.
+          Não vendemos nem alugamos dados pessoais. Os anúncios exibidos em
+          alguns aplicativos são fornecidos pelo Google AdMob, que pode
+          usar o identificador de publicidade do dispositivo conforme a
+          própria política do Google (veja a seção 3).
         </p>
 
         <h3>3. Serviços de terceiros</h3>
         <p>
           Alguns aplicativos podem utilizar bibliotecas e serviços de
-          terceiros — como serviços do Google Play e ferramentas de análise
-          de desempenho — para garantir estabilidade e funcionamento. Esses
+          terceiros — como serviços do Google Play, o Google AdMob (anúncios) e
+          ferramentas de análise de desempenho — para garantir estabilidade
+          e funcionamento. Esses
           serviços possuem suas próprias políticas de privacidade. Recomendamos
           a leitura da política de privacidade do Google, disponível em
           <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.
         </p>
 
-        <h3>4. Segurança dos dados</h3>
+        <h3>4. Idle Miner AM: dados tratados pelo jogo</h3>
+        <p>
+          O Idle Miner AM envolve conta de jogador e pagamentos, por isso
+          trata mais informações do que os outros aplicativos do estúdio:
+        </p>
+        <ul>
+          <li><strong>Conta e perfil:</strong> login com a sua conta Google, nome de exibição, nome de usuário, avatar, data de nascimento (usada para confirmar que você tem 18 anos ou mais) e a senha do app, usada para desbloquear o jogo;</li>
+          <li><strong>Progresso:</strong> saldo de moedas, nível do mineiro, horários dos ciclos de mineração, verificações de sessão e registros de uso necessários para aplicar os limites do jogo;</li>
+          <li><strong>Saques e compras:</strong> a chave Pix que você informar (CPF, e-mail, telefone ou chave aleatória), ou o destino em DOGE que você informar, além do valor, da cotação aplicada, da data e do status de cada pedido;</li>
+          <li><strong>Anúncios:</strong> o anúncio em vídeo que inicia cada ciclo é exibido pelo Google AdMob, e o servidor recebe a confirmação de que o anúncio foi concluído.</li>
+        </ul>
+        <p>
+          Esses dados são usados para operar o jogo, pagar saques, confirmar
+          compras, prevenir fraude e abuso e cumprir obrigações legais.
+          Eles ficam armazenados em servidores do Supabase. Os pagamentos
+          em DOGE são processados pela FaucetPay, que tem política própria
+          de privacidade. Não temos acesso à sua senha nem às suas chaves
+          da FaucetPay.
+        </p>
+        <p>
+          Mantemos os dados da conta enquanto ela existir. Registros de
+          saques e compras podem ser mantidos pelo tempo necessário para
+          prevenção de fraude e para obrigações legais. Para pedir acesso,
+          correção ou exclusão dos seus dados, escreva para
+          <a href="mailto:fl842024@gmail.com">fl842024@gmail.com</a>.
+        </p>
+
+        <h3>5. Segurança dos dados</h3>
         <p>
           Adotamos medidas técnicas e organizacionais razoáveis para proteger
           quaisquer informações tratadas por nossos aplicativos contra acesso
@@ -1228,16 +1488,17 @@
           manter nossos padrões de segurança atualizados.
         </p>
 
-        <h3>5. Privacidade de crianças</h3>
+        <h3>6. Privacidade de crianças</h3>
         <p>
           Nossos aplicativos não são direcionados, de forma geral, a crianças
-          menores de 13 anos. Caso um aplicativo específico seja voltado a um
+          menores de 13 anos. O Idle Miner AM é destinado exclusivamente a
+          maiores de 18 anos. Caso um aplicativo específico seja voltado a um
           público infantil, isso será informado de forma destacada na própria
           página da loja e dentro do aplicativo, juntamente com informações
           adicionais sobre como a privacidade desse público é tratada.
         </p>
 
-        <h3>6. Seus direitos e escolhas</h3>
+        <h3>7. Seus direitos e escolhas</h3>
         <p>
           Você pode, a qualquer momento, revisar e ajustar as permissões
           concedidas a qualquer aplicativo diretamente nas configurações do
@@ -1246,7 +1507,7 @@
           entre em contato pelo e-mail informado na seção "Contato e Suporte".
         </p>
 
-        <h3>7. Alterações nesta política</h3>
+        <h3>8. Alterações nesta política</h3>
         <p>
           Esta Política de Privacidade pode ser atualizada periodicamente
           para refletir melhorias nos aplicativos ou mudanças legais. A data
@@ -1254,7 +1515,7 @@
           Recomendamos a revisão periódica desta página.
         </p>
 
-        <h3>8. Contato</h3>
+        <h3>9. Contato</h3>
         <p>
           Em caso de dúvidas sobre esta Política de Privacidade ou sobre o
           tratamento de dados em qualquer aplicativo da R. Teixeira Design &
@@ -1265,9 +1526,6 @@
     </div>
   </section>
 
-  <!-- =================================================================
-       CONTATO E SUPORTE
-  ================================================================== -->
   <section class="contact" id="contato">
     <div class="container">
       <div class="section-head center">
@@ -1308,9 +1566,6 @@
     </div>
   </section>
 
-  <!-- =================================================================
-       RODAPÉ
-  ================================================================== -->
   <footer>
     <div class="container footer-wrap">
       <span>© 2026 R. Teixeira Design & Dev. Todos os direitos reservados.</span>
@@ -1318,6 +1573,7 @@
         <a href="#home">Início</a>
         <a href="#sobre">Quem Somos</a>
         <a href="#vitrine">Apps & Jogos</a>
+        <a href="#idle-miner">Idle Miner AM</a>
         <a href="#privacidade">Privacidade</a>
         <a href="#contato">Contato</a>
       </div>
